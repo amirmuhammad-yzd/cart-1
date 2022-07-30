@@ -70,7 +70,6 @@ body
 {
     width: 100%;
     height: 100%;
-    background-color: rgb(198, 152, 199);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -201,4 +200,47 @@ button.minuse
 {
     color: rgb(196, 27, 27);
     cursor: pointer;
+}
+.tarashInLike
+{
+    position: absolute;
+    left: 350px;
+    top: -10px;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.89);
+    background-color: rgb(151, 139, 230);
+    padding: 10px;
+    border-radius: 10px;
+}
+.tarashInLike:hover
+{
+    color: rgb(211, 22, 22);
+}
+.t-price
+{
+
+    background-color: rgb(151, 139, 230);
+    padding: 10px 50px;
+    border-radius: 30px 10px;
+    width: fit-content;
+    margin: 50px auto 0;
+    height: 50px;
+    display: block;
+    color: rgba(255, 255, 255, 0.863);
+    letter-spacing: 2px;
+}
+.productsCart
+{
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 30px 100px;
+    justify-content: center;
+    padding: 50px;
+    position: absolute;
+
+}
+.cartBody
+{
+    box-shadow: 0 20px 20px 110px rgba(198, 152, 199, 0.664), 20px 20px 20px 100px rgba(198, 152, 199, 0.767);
+
 }

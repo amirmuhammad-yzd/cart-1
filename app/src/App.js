@@ -8,7 +8,7 @@ const App = () =>
 {
 const [cart, setCart] = useState([]);
 const [like,setLike]=useState([]);
-const [cartCount,setCartcount] = useState(0)
+const [totalPrice,setTotalPrice] = useState( 0 )
 
 
 
@@ -18,8 +18,8 @@ const addToCartFunction = (items) =>
   {
     cart.push(items)
     setCart([...cart])
-    console.log(cart[0].image)
   }
+  totalPriceFunction();
 }
 const addToLikeFunction=(items)=>{
   if(!like.includes(items))
@@ -28,27 +28,56 @@ const addToLikeFunction=(items)=>{
     setLike([...like])
   }
 }
-var x=0;
 const changeCount=(id,num)=>
 {
-  cart.map((item,index)=>
-  {
+  cart.map((item,index)=>{
     if(item.id===id)
-    x=
-    console.log(x)
+    {
+      item.count=item.count+num;
+      setCart([...cart])
+      if(item.count===0)
+      {
+        item.count=1;
+      }
+    }
+    totalPriceFunction();
   })
-  return(x)
 }
-
-
-
+const delCartFunction = (id)=>
+{
+  cart.map(item=>{
+    if(item.id===id)
+    {
+      cart.splice(item,1)
+    }
+    setCart([...cart])
+  })
+  totalPriceFunction();
+}
+const delLikeFunction=(id)=>
+{
+  like.map(item=>{
+    if(item.id===id)
+    {
+      like.splice(item,1)
+      setLike([...like])
+    }
+  })
+}
+const totalPriceFunction=()=>{
+  var z=0;
+  cart.map(item=>{
+    z=item.count*item.price+z
+  })
+  setTotalPrice(z)
+}
   return(
       <div>
         <Navbar cartLength={cart.length} likeLength={like.length}/>
           <Routes>
             <Route path="/" element={<Products addToCart={addToCartFunction} addToLike={addToLikeFunction}/>}/>
-            <Route path="/cart" element={<Cart cartData={cart} cartCount={()=>{return(changeCount())}} changeCount={changeCount}/>}/>
-            <Route path="/liked" element={<Liked likeData={like}/>}/>
+            <Route path="/cart" element={<Cart cartData={cart} changeCount={changeCount} totalPrice={totalPrice} delCart={delCartFunction} />}/>
+            <Route path="/liked" element={<Liked likeData={like} delLike={delLikeFunction}/>}/>
           </Routes>
       </div>      
     )
